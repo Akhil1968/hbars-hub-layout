@@ -1,11 +1,16 @@
 
-exports.loginPageHandler = function(req, res){
-	req.session.destroy();
-	console.log("Login Page");
+exports.loginHandler = function(req, res){
 	res.render('login.handlebars', {});
-}
+}//loginHandler
 
-exports.landingPageHandler = function(req, res){
+exports.logoutHandler = function(req, res){
+	req.session.destroy();
+	res.render('login.handlebars', {LOGGEDIN:false});
+}//logoutHandler
+
+exports.landingHandler = function(req, res){
+	// user comes to this handler after login, set loggedin variable in session to true.
+	req.session.loggedin = true;
 	console.log("processing GET request for landing page. Req Param  " + req.query.nm);
 
 	var person;
@@ -19,10 +24,11 @@ exports.landingPageHandler = function(req, res){
 		console.log("User Name does not exist in session. Hence storing it in session store " + person);
 	}
 
-	res.render('landingpage.handlebars', {welcomeMessage:person});
-}
+	res.render('landingpage.handlebars', {welcomeMessage:person, 
+										LOGGEDIN:req.session.loggedin});
+}//landingHandler
 
-exports.cityPageHandler = function(req, res){
+exports.cityHandler = function(req, res){
 	var interestValue = req.body.interest;
 	var cityNameValue, taglineValue;
 	console.log("received interestValue  as " + interestValue);
@@ -40,5 +46,8 @@ exports.cityPageHandler = function(req, res){
 	}
 	
 	res.render('city.handlebars', {cityName:cityNameValue, 
-						tagline: taglineValue, person:req.session.userName});
-}
+						tagline: taglineValue, 
+						welcomeMessage:req.session.userName,
+						LOGGEDIN:req.session.loggedin});
+
+}//cityHandler

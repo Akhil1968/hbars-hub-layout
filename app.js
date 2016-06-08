@@ -14,7 +14,7 @@ app.use(session({secret: "secret",  resave : true,  saveUninitialized : false}))
 var routes = require('./routes/routes.js');
 
 app.set('view engine', 'handlebars');
-app.engine('handlebars', handlebars({}));
+app.engine('handlebars', handlebars({defaultLayout:'layout'}));
 
 app.get('/', routes.loginHandler);
 app.get('/logout', routes.logoutHandler);

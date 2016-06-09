@@ -36,15 +36,15 @@ exports.cityHandler = function(req, res){
 
 	if (interestValue === 'history'){
 		cityNameValue = 'Rome';
-		taglineValue = 'City of earliest civilization';
-		imageArray = [1,2,3,4];
+		taglineValue = 'The city of earliest civilization';
+		imageArray = [1,2];
 	}else if (interestValue === 'fashion'){
 		cityNameValue = 'Paris';
-		taglineValue = 'Fashion capital of the world ';
+		taglineValue = 'The fashion capital of the world';
 		imageArray = [1,2,3];
 	}else if (interestValue === 'finance'){
 		cityNameValue = 'New York';
-		taglineValue = 'Business capital of the world ';
+		taglineValue = 'The business capital of the world';
 		imageArray = [1,2,3,4,5,6];
 	}
 	

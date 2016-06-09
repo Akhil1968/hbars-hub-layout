@@ -1,21 +1,21 @@
 <div class="container">
   <div class="row">
     <div class="col-md-6 col-md-offset-0 panel panel-default">
-      <h3 align="center" class="margin-base-vertical">Hi {{welcomeMessage}}! Welcome to the Transport Hub</h3>
+      <h3 align="center" class="margin-base-vertical">Hi {{welcomeMessage}}! </h3>
       <p class="help-block text-center">
-          Depending on your interest, I'll take you to a city. What's your interest? 
+          Depending on your interest, I'll take you to a city.  
       </p>
-      <form class="margin-base-vertical" method="post" action="/toCity">
-        <p class="text-center" class="input-group "> 
-          <select  required class="form-control input-lg" name="interest" >
+      <form class="margin-base-vertical" method="post" action="/toCity" role="form">
+        <div class="form-group"> 
+          <label for="interest">What's your interest?</label>
+          <select  required class="form-control" name="interest" id="interest" >
             <option value="finance">Business</option>
             <option value="fashion">Fashion</option>
             <option value="history">History</option>
           </select>
-        </p>
+        </div>
         <p class="text-center">
           <button type="submit" class="btn btn-success btn-lg">Submit</button>
-          <a href="/cancel" class="btn btn-success btn-lg">Cancel</a>
         </p>
       </form>
     </div>

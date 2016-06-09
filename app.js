@@ -2,6 +2,7 @@ var express = require('express');
 var handlebars = require('express-handlebars');
 var bodyparser = require('body-parser');
 var session = require('express-session');
+var net = require('net');
 
 var app = express();
 app.use(express.static(__dirname + "/public"));
@@ -20,9 +21,7 @@ app.get('/', routes.loginHandler);
 app.get('/logout', routes.logoutHandler);
 app.get('/toLanding', routes.landingHandler);
 app.post('/toCity', routes.cityHandler);
-app.get('/cancel', function(req, res){
-	res.send('Cancel');
-});
+
 
 app.use("*", function(req, res) {
      res.status(404);
@@ -37,6 +36,22 @@ app.use(function(error, req, res, next) {
 
 
 var port = process.env.PORT || 3000;
-app.listen(port, function(){
-	console.log('HTTP server is listening on port: ' + port);
+
+console.log("Checking the availability of port %d", port);
+var netServer = net.createServer();
+netServer.once('error', function(err) {
+  if (err.code === 'EADDRINUSE') {
+    console.log("port %d is currently in use", port);
+  }
 });
+
+netServer.listen(port, function(){
+	console.log('Net server is able to listen on port: ' + port);
+	netServer.close();
+	console.log('Closing Net server on port: ' + port);
+
+	app.listen(port, function(){
+		console.log('port %d is available. Hence starting the HTTP server on it.', port);
+	});
+});
+

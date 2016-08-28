@@ -1,7 +1,7 @@
 var express = require('express');
 var handlebars = require('express-handlebars');
 var bodyparser = require('body-parser');
-var session = require('express-session');
+var session = require('express-session'); 
 var net = require('net');
 
 var app = express();
@@ -21,7 +21,6 @@ app.get('/', routes.loginHandler);
 app.get('/logout', routes.logoutHandler);
 app.get('/toLanding', routes.landingHandler);
 app.post('/toCity', routes.cityHandler);
-
 
 app.use("*", function(req, res) {
      res.status(404);
@@ -45,6 +44,7 @@ netServer.once('error', function(err) {
   }
 });
 
+
 netServer.listen(port, function(){
 	console.log('Net server is able to listen on port: ' + port);
 	netServer.close();
@@ -54,4 +54,3 @@ netServer.listen(port, function(){
 		console.log('port %d is available. Hence starting the HTTP server on it.', port);
 	});
 });
-

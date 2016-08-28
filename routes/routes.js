@@ -11,7 +11,6 @@ exports.logoutHandler = function(req, res){
 exports.landingHandler = function(req, res){
 	// user comes to this handler after login, set loggedin variable in session to true.
 	req.session.loggedin = true;
-	console.log("processing GET request for landing page. Req Param  " + req.query.nm);
 
 	var person;
 	if (req.session.userName){   //session store has userName

@@ -44,7 +44,7 @@ exports.cityHandler = function(req, res){
 	}else if (interestValue === 'finance'){
 		cityNameValue = 'New York';
 		taglineValue = 'The business capital of the world';
-		imageArray = [1,2,3,4,5,6];
+		imageArray = [1,2,3,4,5,6]; 
 	}
 	
 	res.render('city.handlebars', {cityName:cityNameValue, 
